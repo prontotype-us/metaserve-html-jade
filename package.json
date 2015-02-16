@@ -1,0 +1,24 @@
+{
+    "name": "metaserve-html-jade",
+    "version": "0.0.1",
+    "description": "metaserve plugin for rendering HTML with Jade",
+    "homepage": "http://github.com/prontotype-us/metaserve-html-jade",
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/prontotype-us/metaserve-html-jade.git"
+    },
+    "author": {
+        "name": "Sean Robertson",
+        "url": "http://sprobertson.com"
+    },
+    "main": "lib/index.js",
+    "dependencies": {
+        "metaserve": "0.3.x",
+        "jade": "1.3.x"
+    },
+    "keywords": [
+        "metaserve",
+        "jade"
+    ]
+}
+
