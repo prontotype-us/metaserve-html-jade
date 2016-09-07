@@ -1,6 +1,6 @@
 {
     "name": "metaserve-html-jade",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "metaserve plugin for rendering HTML with Jade",
     "homepage": "http://github.com/prontotype-us/metaserve-html-jade",
     "repository": {

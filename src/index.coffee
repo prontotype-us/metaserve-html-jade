@@ -1,6 +1,6 @@
 fs = require 'fs'
 jade = require 'jade'
-Compiler = require 'metaserve/src/compiler'
+Compiler = require 'metaserve/lib/compiler'
 
 class JadeCompiler extends Compiler
 
