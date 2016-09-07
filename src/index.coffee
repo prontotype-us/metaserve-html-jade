@@ -8,12 +8,15 @@ class JadeCompiler extends Compiler
         base_dir: './views'
         ext: 'jade'
 
-    compile: (jade_filename) ->
+    compile: (jade_filename, cb) ->
         options = @options
-        return (req, res, next) ->
-            fs.readFile jade_filename, (err, file_str) ->
-                res.setHeader 'Content-Type', 'text/html'
-                res.end jade.compile(file_str, {filename: options.base_dir + '/_.jade'})()
+        fs.readFile jade_filename, (err, file_str) ->
+            cb err, {
+                content_type: 'text/html'
+                source: file_str
+                compiled: jade.compile(file_str, {filename: options.base_dir + '/_.jade'})()
+            }
 
-module.exports = (options={}) -> new JadeCompiler().set(options)
+module.exports = (options={}) ->
+    new JadeCompiler().set(options)
 
