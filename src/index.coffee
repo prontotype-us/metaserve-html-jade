@@ -1,22 +1,26 @@
 fs = require 'fs'
 jade = require 'jade'
-Compiler = require 'metaserve/lib/compiler'
+path = require 'path'
 
-class JadeCompiler extends Compiler
+VERBOSE = process.env.METASERVE_VERBOSE?
 
-    default_options:
-        base_dir: './views'
-        ext: 'jade'
+module.exports =
+    ext: 'jade'
 
-    compile: (jade_filename, cb) ->
-        options = @options
-        fs.readFile jade_filename, (err, file_str) ->
+    default_config:
+        content_type: 'text/html'
+
+    compile: (filename, config, context, cb) ->
+        console.log '[JadeCompiler.compile]', filename, config if VERBOSE
+
+        fs.readFile filename, (err, file_str) ->
+            filename = path.join config.base_dir, '_.jade'
+            jade_compiler = jade.compile file_str, {filename}
+            html = jade_compiler(context)
+
             cb err, {
-                content_type: 'text/html'
+                content_type: config.content_type
                 source: file_str
-                compiled: jade.compile(file_str, {filename: options.base_dir + '/_.jade'})()
+                compiled: html
             }
-
-module.exports = (options={}) ->
-    new JadeCompiler().set(options)
 
