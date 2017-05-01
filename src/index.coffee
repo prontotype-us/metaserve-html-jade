@@ -14,7 +14,7 @@ module.exports =
         console.log '[JadeCompiler.compile]', filename, config if VERBOSE
 
         fs.readFile filename, (err, file_str) ->
-            filename = path.join config.base_dir, '_.jade'
+            filename = path.join config.static_dir, '_.jade'
             jade_compiler = jade.compile file_str, {filename}
             html = jade_compiler(context)
 
